@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>relay</title>
+
+		<meta name="generator" content="relay app" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="description" content="relay" />
+
+		%sapper.base%
+		<link rel="icon" type="image/png" href="favicon.png" />
+
+		<!--		 See https://goo.gl/OOhYW5-->
+		<link rel="manifest" href="manifest.json" />
+
+		<!-- See https://goo.gl/qRE0vM -->
+		<meta name="theme-color" content="#3f51b5" />
+
+		<!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<meta name="application-name" content="relay" />
+
+		<!-- Add to homescreen for Safari on iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="relay" />
+
+		<!-- Homescreen icons -->
+		<link rel="apple-touch-icon" href="manifest/icon_48.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="manifest/icon_72.png" />
+		<link rel="apple-touch-icon" sizes="96x96" href="manifest/icon_96.png" />
+		<link
+			rel="apple-touch-icon"
+			sizes="144x144"
+			href="manifest/icon_144.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="192x192"
+			href="manifest/icon_192.png"
+		/>
+
+		<!-- Tile icon for Windows 8 (144x144 + tile color) -->
+		<meta
+			name="msapplication-TileImage"
+			content="img/manifest/icon_144.png"
+		/>
+		<meta name="msapplication-TileColor" content="#3f51b5" />
+		<meta name="msapplication-tap-highlight" content="no" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@sveltejs" />
+		<meta name="twitter:creator" content="@sveltejs" />
+		<meta
+			name="twitter:image"
+			content="https://svelte.dev/images/twitter-card.png"
+		/>
+
+		<meta name="og:title" content="relay" />
+		<meta property="og:type" content="website" />
+		<meta name="og:site_name" content="relay Platform" />
+		<meta property="og:image" content="manifest/icon_144.png" />
+
+		<meta name="og:description" content="relay" />
+
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+			rel="stylesheet"
+		/>
+
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Material+Icons&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href="index.css" />
+
+		<link rel="stylesheet" href="global.css" />
+
+		<!-- Sapper generates a <style> tag containing critical CSS
+	     for the current page. CSS for the rest of the app is
+	     lazily loaded when it precaches secondary pages -->
+		%sapper.styles%
+
+		<!-- This contains the contents of the <svelte:head> component, if
+	     the current page has one -->
+		%sapper.head%
+	</head>
+
+	<body>
+		<noscript>
+			<strong>Please enable JavaScript to view relay app.</strong>
+		</noscript>
+
+		<!-- The application will be rendered inside this element,
+	     because `src/client.js` references it -->
+		<div id="sapper">%sapper.html%</div>
+
+		<!-- Sapper creates a <script> tag containing `src/client.js`
+	     and anything else it needs to hydrate the app and
+	     initialise the router -->
+		%sapper.scripts%
+	</body>
+</html>
