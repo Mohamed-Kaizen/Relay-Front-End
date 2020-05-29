@@ -20,7 +20,7 @@
 			token.set(response.data.token)
 			user.set(response.data.userInfo)
 			loading = false
-			goto("/")
+			goto("/profile/")
 		} catch (e) {
 			visible = true
 			loading = false

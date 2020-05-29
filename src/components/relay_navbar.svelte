@@ -5,7 +5,8 @@
 
 	import TopAppBar, {Row, Section, Title} from "@smui/top-app-bar"
 	import Card, {Content} from "@smui/card"
-	import Button, {Label} from "@smui/button"
+	import {Button} from "svelte-mui/src"
+
 	import Menu from "@smui/menu"
 	import List, {Separator, Item, Text} from "@smui/list"
 
@@ -39,24 +40,15 @@
 			<div class="hidden md:block mr-5">
 
 				<a rel="prefetch" href="/internships/">
-					<Button color="secondary" class="mr-5">
-						<Label>Internship</Label>
-
-					</Button>
+					<Button color="secondary" class="mr-5">Internship</Button>
 				</a>
 
 				<a rel="prefetch" href="/users/">
-					<Button color="secondary" class="mr-5">
-						<Label>Users</Label>
-
-					</Button>
+					<Button color="secondary" class="mr-5">Users</Button>
 				</a>
 
 				<a rel="prefetch" href="/enterprises/">
-					<Button color="secondary" class="mr-5">
-						<Label>Enterprises</Label>
-
-					</Button>
+					<Button color="secondary" class="mr-5">Enterprises</Button>
 				</a>
 			</div>
 
@@ -91,7 +83,7 @@
 
 					<img
 						on:click="{() => image_menu.setOpen(true)}"
-						class="h-10 w-10 rounded-full mr-5"
+						class="h-10 w-10 rounded-full mr-5 cursor-pointer"
 						src="{$user.avatarImg}"
 						alt="{$user.fullname} profile " />
 					<Menu bind:this="{image_menu}" anchorCorner="BOTTOM_LEFT">
@@ -122,7 +114,7 @@
 				</div>
 			{:else}
 				<a href="/signin/">
-					<Button variant="outlined" color="secondary">Sign IN</Button>
+					<Button outlined color="secondary">Sign IN</Button>
 				</a>
 			{/if}
 		</Section>

@@ -23,13 +23,11 @@ export function generate_password(
 
 export function match_path(str, route) {
 	const regex = /^\/([^?\/]+)/
-
-	const matched = str.match(regex)
-
-	if (matched === null) {
-		return route === "/"
+	const matched = route.match(regex)
+	if (str === undefined && matched !== null) {
+		return route === `${matched[0]}/`
 	} else {
-		return route.search(matched[0]) === 0
+		return route.search(str) === 8
 	}
 }
 

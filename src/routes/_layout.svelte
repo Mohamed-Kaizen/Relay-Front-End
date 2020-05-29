@@ -8,25 +8,32 @@
 
 	import {token, user} from "../store"
 
+	import {get_path} from "../utils"
+
 	const {preloading, page} = stores()
 
 	if (typeof window !== "undefined") {
 		token.use_local_storage()
 		user.use_local_storage()
 	}
+
+	$: path = $page.path
+
 	setContext("token", token)
 
 	setContext("user", user)
-</script>
 
-<svelte:head>
-	<title>Relay</title>
-</svelte:head>
+	$: path_name = get_path(path)
+</script>
 
 {#if $preloading}
 	<PreloadingIndicator />
 {/if}
 
-<RelayNavBar />
+{#if path_name === 'profile'}
+	<slot />
+{:else}
+	<RelayNavBar />
 
-<slot />
+	<slot />
+{/if}
