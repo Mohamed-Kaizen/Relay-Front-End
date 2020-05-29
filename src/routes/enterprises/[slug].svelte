@@ -13,7 +13,6 @@
 
 <script>
 	export let enterprise
-	console.log(enterprise)
 </script>
 
 <svelte:head>

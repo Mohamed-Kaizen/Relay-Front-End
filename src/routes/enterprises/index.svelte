@@ -10,7 +10,6 @@
 
 <script>
 	export let enterprises
-	console.log(enterprises)
 </script>
 
 <svelte:head>
