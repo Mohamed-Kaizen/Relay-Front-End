@@ -609,5 +609,5 @@ yarn.lock
 
 __sapper__
 __sapper__/*
- .idea
- .idea/*
+.idea
+.idea/*
