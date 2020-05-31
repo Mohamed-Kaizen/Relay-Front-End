@@ -59,7 +59,7 @@
 			user.set(response.data.userInfo)
 			location.reload()
 		} catch (e) {
-		    console.log(e.response)
+			console.log(e.response)
 			message = e.response
 			snackbar_color = "red"
 			visible = true

@@ -15,6 +15,7 @@
 	import {Button, Icon, Snackbar, Textfield} from "svelte-mui/src"
 	import {user} from "../../store"
 	import Spinner from "../../components/spinner.svelte"
+	import {fly} from "svelte/transition"
 
 	export let internship
 	let visible = false,
@@ -118,7 +119,9 @@
 	</span>
 </Snackbar>
 
-<section class="text-gray-700 body-font overflow-hidden bg-white">
+<section
+	transition:fly="{{x: 200, duration: 2000}}"
+	class="text-gray-700 body-font overflow-hidden bg-white">
 	<div class="container px-5 py-24 mx-auto">
 		<div class="mx-auto flex flex-wrap">
 			<div class=" w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

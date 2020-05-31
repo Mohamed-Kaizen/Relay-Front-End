@@ -8,7 +8,7 @@
 	if ($token) {
 		goto("/")
 	}
-let name,
+	let name,
 		email,
 		password,
 		confirm_password,
@@ -23,7 +23,7 @@ let name,
 		message,
 		snackbar_color,
 		visible = false,
-        loading = false
+		loading = false
 
 	async function sign_up() {
 		loading = true
@@ -43,7 +43,10 @@ let name,
 		}
 
 		try {
-			const response = await custom_axios.post("signup/signup_enterprise", data)
+			const response = await custom_axios.post(
+				"signup/signup_enterprise",
+				data
+			)
 			message = "Account has been created"
 			snackbar_color = "green"
 			visible = true
@@ -52,7 +55,7 @@ let name,
 			user.set(response.data.userInfo)
 			location.reload()
 		} catch (e) {
-		    console.log(e.response)
+			console.log(e.response)
 			message = e.response
 			snackbar_color = "red"
 			visible = true

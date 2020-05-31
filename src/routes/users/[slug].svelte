@@ -13,13 +13,16 @@
 
 <script>
 	export let user
+	import {fly} from "svelte/transition"
 </script>
 
 <svelte:head>
 	<title>{user.handle} | Relay</title>
 </svelte:head>
 
-<div class="text-gray-800 antialiased">
+<div
+	transition:fly="{{x: 200, duration: 2000}}"
+	class="text-gray-800 antialiased">
 	<main class="profile-page">
 		<section class="relative block" style="height: 500px;">
 			<div

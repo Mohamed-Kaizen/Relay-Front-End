@@ -10,7 +10,15 @@
 
 <script>
 	export let internships
-	import {Snackbar, Icon, Dialog, Datefield, Textfield, Button} from "svelte-mui/src"
+	import {fly} from "svelte/transition"
+	import {
+		Snackbar,
+		Icon,
+		Dialog,
+		Datefield,
+		Textfield,
+		Button,
+	} from "svelte-mui/src"
 
 	let salarys,
 		durations,
@@ -23,9 +31,9 @@
 		titles,
 		field_majors,
 		visible = false,
-        message,
-            snackbar_color,
-            snackbar_visible
+		message,
+		snackbar_color,
+		snackbar_visible
 
 	async function create() {
 		const data = {
@@ -42,18 +50,16 @@
 		}
 		try {
 			const response = await custom_axios.post("posts/internship", data)
-            const res = await custom_axios.get("posts/internships")
-		    internships = res.data
-            message = "internship has been created"
+			const res = await custom_axios.get("posts/internships")
+			internships = res.data
+			message = "internship has been created"
 			snackbar_color = "green"
 			snackbar_visible = true
-
 		} catch (e) {
 			console.log(e.response)
-            message = e.response.data.error
+			message = e.response.data.error
 			snackbar_color = "red"
 			snackbar_visible = true
-
 		}
 	}
 </script>
@@ -62,14 +68,14 @@
 	<title>List of Internships | Relay</title>
 </svelte:head>
 
-		<Snackbar bind:visible={snackbar_visible} bg="{snackbar_color}" bottom>
-            {message}
-			<span slot="action">
-				<Button color="#ff0" on:click="{() => (snackbar_visible = false)}">
-					Close
-				</Button>
-			</span>
-		</Snackbar>
+<Snackbar bind:visible="{snackbar_visible}" bg="{snackbar_color}" bottom>
+	{message}
+	<span slot="action">
+		<Button color="#ff0" on:click="{() => (snackbar_visible = false)}">
+			Close
+		</Button>
+	</span>
+</Snackbar>
 
 <Dialog width="1000" bind:visible>
 	<div slot="title">Create New Internship!</div>
@@ -140,7 +146,9 @@
 	</form>
 </Dialog>
 
-<section class="text-gray-700 body-font">
+<section
+	transition:fly="{{x: 200, duration: 2000}}"
+	class="text-gray-700 body-font">
 	<div class="container px-5 py-24 mx-auto">
 
 		<Button raised on:click="{() => (visible = true)}">Create new</Button>

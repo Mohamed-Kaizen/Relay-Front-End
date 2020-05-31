@@ -1,5 +1,6 @@
 <script>
 	export let segment
+	import {fly} from "svelte/transition"
 
 	import {goto} from "@sapper/app"
 
@@ -16,7 +17,7 @@
 	}
 </script>
 
-<div class="h-screen flex">
+<div transition:fly="{{x: 200, duration: 2000}}" class="h-screen flex">
 	<div
 		on:click="{() => (drawer = !drawer)}"
 		class="{drawer ? 'block' : 'hidden'} fixed inset-0 bg-black opacity-50

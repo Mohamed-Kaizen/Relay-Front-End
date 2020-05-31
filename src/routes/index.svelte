@@ -1,8 +1,13 @@
+<script>
+	import {fly} from "svelte/transition"
+</script>
+
 <svelte:head>
 	<title>Home | Relay</title>
 </svelte:head>
 
 <div
+	transition:fly="{{x: 200, duration: 2000}}"
 	class="leading-normal tracking-normal text-white gradient"
 	style="font-family: 'Source Sans Pro', sans-serif;">
 	<!--Hero-->

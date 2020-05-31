@@ -10,13 +10,16 @@
 
 <script>
 	export let enterprises
+	import {fly} from "svelte/transition"
 </script>
 
 <svelte:head>
 	<title>List of Enterprises | Relay</title>
 </svelte:head>
 
-<section class="text-gray-700 body-font">
+<section
+	transition:fly="{{x: 200, duration: 2000}}"
+	class="text-gray-700 body-font">
 	<div class="container px-5 py-24 mx-auto">
 		<div class="flex flex-wrap -m-4">
 			{#each enterprises as {enterprise_name, username, emai, avatarImg}}

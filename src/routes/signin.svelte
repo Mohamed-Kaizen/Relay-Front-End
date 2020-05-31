@@ -1,4 +1,5 @@
 <script>
+	import {fly} from "svelte/transition"
 	import {goto} from "@sapper/app"
 	import {Textfield, Snackbar, Button, Icon} from "svelte-mui/src"
 	import custom_axios from "../axios"
@@ -20,7 +21,7 @@
 			token.set(response.data.token)
 			user.set(response.data.userInfo)
 			loading = false
-            location.reload()
+			location.reload()
 		} catch (e) {
 			visible = true
 			loading = false
@@ -32,7 +33,9 @@
 	<title>Sign IN | Relay</title>
 </svelte:head>
 
-<div class="text-gray-800 antialiased">
+<div
+	transition:fly="{{x: 200, duration: 2000}}"
+	class="text-gray-800 antialiased">
 	<main>
 		<Snackbar bind:visible bg="#f44336" bottom>
 			Incorrect Username or Password
