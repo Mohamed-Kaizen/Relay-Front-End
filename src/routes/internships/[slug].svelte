@@ -20,9 +20,11 @@
 	let visible = false,
 		loading = false,
 		message,
-		snackbar_color, promise, comment
+		snackbar_color,
+		promise,
+		comment
 
-    promise = get_comments()
+	promise = get_comments()
 
 	async function get_comments() {
 		try {
@@ -31,7 +33,7 @@
 			)
 
 			if (response.status === 200 || response.status === 201) {
-			    return response.data
+				return response.data
 			}
 		} catch (e) {
 			message = `${e.response.data}`
@@ -62,23 +64,24 @@
 		}
 	}
 
-		async function post_comment() {
+	async function post_comment() {
 		try {
 			loading = true
-            const data = {comment: comment}
+			const data = {comment: comment}
 			const response = await custom_axios.post(
-				`posts/internship/${internship.id}/comment`, data
+				`posts/internship/${internship.id}/comment`,
+				data
 			)
-            console.log(response)
+			console.log(response)
 			if (response.status === 200 || response.status === 201) {
 				message = "comment created Successfully"
 				snackbar_color = "green"
 				visible = true
 				loading = false
-                promise = get_comments()
+				promise = get_comments()
 			}
 		} catch (e) {
-		    console.log(e.response)
+			console.log(e.response)
 			message = e.response
 			snackbar_color = "red"
 			visible = true
@@ -354,46 +357,48 @@
 <hr />
 <section class="text-gray-700 body-font">
 	<div class="container px-5 py-24 mx-auto">
-        <div class="flex">
-        <Textfield
-            filled
-            autocomplete="on"
-            label="Comment"
-            required
-            bind:value="{comment}"
-            type="text" />
+		<div class="flex">
+			<Textfield
+				filled
+				autocomplete="on"
+				label="Comment"
+				required
+				bind:value="{comment}"
+				type="text" />
 
-            <Button icon on:click={post_comment}>
-            <Icon
-                path="M2.01 21L23 12 2.01 3 2
-                10l15 2-15 2z"/>
-        </Button>
-        </div>
-        <br/>
-        {#await promise}
-        <h1>Loading.......</h1>
-            {:then data}
-            {#each data.comments as {comment, userId}}
-        <div
-			class="flex flex-col bg-white px-8 py-6 max-w-sm mx-auto rounded-lg
-			shadow-lg">
-			<div class="mt-4">
-				<a class="text-lg text-gray-700 font-medium" href="/">
-                    {comment}
-				</a>
-			</div>
-                    <div class="flex justify-between items-center mt-4">
-            <div class="flex items-center">
-                <img src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                     class="w-8 h-8 object-cover rounded-full" alt="avatar">
-                <a class="text-gray-700 text-sm mx-3" href="/users/{userId}">{userId}</a>
-            </div>
-            <span class="font-light text-sm text-gray-600">Mar 10, 2018</span>
-        </div>
+			<Button icon on:click="{post_comment}">
+				<Icon path="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+			</Button>
 		</div>
 		<br />
-    {/each}
-        {/await}
+		{#await promise}
+			<Spinner />
+		{:then data}
+			{#each data.comments as {comment, userId, created_at}}
+				<div
+					class="flex flex-col bg-white px-8 py-6 max-w-sm mx-auto
+					rounded-lg shadow-lg">
+					<div class="mt-4">
+						<a class="text-lg text-gray-700 font-medium" href="/">
+							{comment}
+						</a>
+					</div>
+					<div class="flex justify-between items-center mt-4">
+						<div class="flex items-center">
+							<a
+								class="text-blue-700 text-sm mx-3"
+								href="/users/{userId}">
+								{userId}
+							</a>
+						</div>
+						<span class="font-light text-sm text-gray-600">
+							{created_at}
+						</span>
+					</div>
+				</div>
+				<br />
+			{/each}
+		{/await}
 
 	</div>
 </section>

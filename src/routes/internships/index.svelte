@@ -10,7 +10,7 @@
 
 <script>
 	export let internships
-	import {Icon, Dialog, Datefield, Textfield, Button} from "svelte-mui/src"
+	import {Snackbar, Icon, Dialog, Datefield, Textfield, Button} from "svelte-mui/src"
 
 	let salarys,
 		durations,
@@ -22,14 +22,18 @@
 		types,
 		titles,
 		field_majors,
-		visible = false
+		visible = false,
+        message,
+            snackbar_color,
+            snackbar_visible
+
 	async function create() {
 		const data = {
 			salary: salarys,
 			duration: durations,
 			number_of_candidates: candidates,
 			description: descriptions,
-			expiredation: expired_dates,
+			expiredation: new Date(),
 			status: statuss,
 			location: locations,
 			type: types,
@@ -38,9 +42,18 @@
 		}
 		try {
 			const response = await custom_axios.post("posts/internship", data)
-			console.log(response.data)
+            const res = await custom_axios.get("posts/internships")
+		    internships = res.data
+            message = "internship has been created"
+			snackbar_color = "green"
+			snackbar_visible = true
+
 		} catch (e) {
-			console.log(e.response.data.error)
+			console.log(e.response)
+            message = e.response.data.error
+			snackbar_color = "red"
+			snackbar_visible = true
+
 		}
 	}
 </script>
@@ -48,6 +61,15 @@
 <svelte:head>
 	<title>List of Internships | Relay</title>
 </svelte:head>
+
+		<Snackbar bind:visible={snackbar_visible} bg="{snackbar_color}" bottom>
+            {message}
+			<span slot="action">
+				<Button color="#ff0" on:click="{() => (snackbar_visible = false)}">
+					Close
+				</Button>
+			</span>
+		</Snackbar>
 
 <Dialog width="1000" bind:visible>
 	<div slot="title">Create New Internship!</div>

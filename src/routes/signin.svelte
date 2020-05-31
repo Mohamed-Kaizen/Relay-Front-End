@@ -20,7 +20,7 @@
 			token.set(response.data.token)
 			user.set(response.data.userInfo)
 			loading = false
-			goto("/profile/")
+            location.reload()
 		} catch (e) {
 			visible = true
 			loading = false
@@ -102,7 +102,9 @@
 									</div>
 									<div class="mt-6">
 
-										<a href="/signup/">Need account ?</a>
+										<a class="text-blue-800" href="/signup/">
+											Need account ?
+										</a>
 									</div>
 
 								</form>
